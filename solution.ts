@@ -23,6 +23,8 @@ function getLength(value: string | any[]): number {
     throw new Error ("Invalid type")
 }
 
+
+
 class Person {
     name: string;
     age: number;
@@ -35,8 +37,25 @@ class Person {
         return `Name: ${this.name}, Age: ${this.age}`;
     }
 }
-const person1 = new Person('John Doe', 30);
-console.log(person1.getDetails());
 
-const person2 = new Person('Alice', 25);
-console.log(person2.getDetails());
+
+interface Item {
+    title: string;
+    rating: number;
+}
+function filterByRating(items: Item[]): Item[] {
+    return items.filter(item => item.rating >= 4);
+}
+
+
+interface User {
+    id: number;
+    name: string;
+    email: string;
+    isActive: boolean;
+}
+function filterActiveUsers(users: User[]): User[] {
+return users.filter(user => user.isActive);
+}
+
+
