@@ -13,6 +13,7 @@ function formatValue(value: string | number |boolean) : string | number | boolea
 
 
 
+
 function getLength(value: string | any[]): number {
     if (typeof value === "string"){
         return value.length;
@@ -22,6 +23,7 @@ function getLength(value: string | any[]): number {
     }
     throw new Error ("Invalid type")
 }
+
 
 
 
@@ -39,6 +41,7 @@ class Person {
 }
 
 
+
 interface Item {
     title: string;
     rating: number;
@@ -46,6 +49,7 @@ interface Item {
 function filterByRating(items: Item[]): Item[] {
     return items.filter(item => item.rating >= 4);
 }
+
 
 
 interface User {
@@ -57,6 +61,8 @@ interface User {
 function filterActiveUsers(users: User[]): User[] {
 return users.filter(user => user.isActive);
 }
+
+
 
 
 interface Book {
@@ -78,3 +84,42 @@ const myBook: Book = {
 };
 
 printBookDetails(myBook);
+
+
+
+
+function getUniqueValues (arr1: (number | string)[], arr2: (number | string)[]): (number | string)[]{
+   const result: (number | string)[] = [];
+   function addIfNotExist(value: number | string){
+    for (let i = 0; i < result.length; i++){
+        if (result[i] ===value) return;
+    }
+    result[result.length] = value;
+   }
+   for (let i = 0; i < arr1.length; i++ ) addIfNotExist(arr1[i]);
+   for (let i = 0; i < arr2.length; i++ ) addIfNotExist(arr2[i]);
+
+   return result;
+}
+
+
+
+
+interface Product {
+    name: string;
+    price: number;
+    quantity: number;
+    discount?: number;
+}
+
+function calculateTotalPrice(products: Product[]): number {
+    if (products.length === 0) return 0;
+
+    return products.reduce((total, product) => {
+        const basePrice = product.price * product.quantity;
+        const discountedPrice = product.discount ? basePrice * (1 - product.discount / 100) : basePrice;
+    return total + discountedPrice;
+  }, 0);
+    }
+
+    
